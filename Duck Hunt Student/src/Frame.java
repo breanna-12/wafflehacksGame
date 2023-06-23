@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
-	Duck d = new Duck();
+	Person person = new Person();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		d.paint(g);
+		person.paint(g);
 	}
 	
 	public static void main(String[] arg) {
@@ -28,7 +28,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public Frame() {
 		JFrame f = new JFrame("Duck Hunt");
-		f.setSize(new Dimension(900, 600));
+		f.setSize(new Dimension(1000, 600));
 		f.setBackground(Color.blue);
 		f.add(this);
 		f.setResizable(false);
@@ -82,11 +82,27 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println(arg0.getKeyCode());
+		if (arg0.getKeyCode() == 39) {
+			person.setImage(false, true);
+			person.rightPressed(true);
+		}
+		if (arg0.getKeyCode() == 37) {
+			person.setImage(true, false);
+			person.leftPressed(true);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+		if (arg0.getKeyCode() == 39) {
+			person.setImage(false, false);
+			person.rightPressed(false);
+		}
+		if (arg0.getKeyCode() == 37) {
+			person.setImage(false, false);
+			person.leftPressed(false);
+		}
 		
 	}
 
