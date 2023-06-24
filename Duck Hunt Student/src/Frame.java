@@ -25,6 +25,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Light light2 = new Light();
 	Light light3 = new Light();
 	Light light4 = new Light();
+	Dresser dresser = new Dresser();
+	Clothes clothes = new Clothes();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -37,6 +39,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		light2.paint(g);
 		light3.paint(g);
 		light4.paint(g);
+		dresser.paint(g);
+		clothes.paint(g);
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
@@ -54,6 +58,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		light2.setX(bg.getX() + 1300);
 		light3.setX(bg.getX() + 1550);
 		light4.setX(bg.getX() + 2300);
+		
+		dresser.setX(bg.getX() + 1876);
+		clothes.setX(bg.getX() + 1830);
 		
 		//----------------- BOUNDARIES ------------------//
 		if (person.getX() < 10) {
@@ -152,6 +159,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning light on");
 	        }
+	    }
+	    
+	    if (arg0.getX() > dresser.getX() && arg0.getX() < dresser.getX() + dresser.getWidth() && arg0.getY() > dresser.getY() && arg0.getY() < dresser.getY() + dresser.getHeight()) {
+	        clothes.setImage();
 	    }
 	}
 
