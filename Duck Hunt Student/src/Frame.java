@@ -21,6 +21,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Window window2 = new Window();
 	TV tv = new TV();
 	Sink sink = new Sink();
+	Light light1 = new Light();
+	Light light2 = new Light();
+	Light light3 = new Light();
+	Light light4 = new Light();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -29,6 +33,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		bg.paint(g);
 		tv.paint(g);
 		sink.paint(g);
+		light1.paint(g);
+		light2.paint(g);
+		light3.paint(g);
+		light4.paint(g);
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
@@ -41,6 +49,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tv.setX(bg.getX() + 1747);
 		
 		sink.setX(bg.getX() + 2105);
+		
+		light1.setX(bg.getX() + 350);
+		light2.setX(bg.getX() + 1300);
+		light3.setX(bg.getX() + 1550);
+		light4.setX(bg.getX() + 2300);
 		
 		//----------------- BOUNDARIES ------------------//
 		if (person.getX() < 10) {
@@ -104,6 +117,42 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        }
 	    }
 	    
+	 // ----------- Light On/Off Collision -------------
+	    if (arg0.getX() > light1.getX() && arg0.getX() < light1.getX() + light1.getWidth()) {
+	        light1.setImage();
+	        if (light1.getisLightOn()) {
+	            System.out.println("Turning light off");
+	        } else {
+	            System.out.println("Turning light on");
+	        }
+	    }
+	    
+	    if (arg0.getX() > light2.getX() && arg0.getX() < light2.getX() + light2.getWidth()) {
+	        light2.setImage();
+	        if (light2.getisLightOn()) {
+	            System.out.println("Turning light off");
+	        } else {
+	            System.out.println("Turning light on");
+	        }
+	    }
+	    
+	    if (arg0.getX() > light3.getX() && arg0.getX() < light3.getX() + light3.getWidth()) {
+	        light3.setImage();
+	        if (light3.getisLightOn()) {
+	            System.out.println("Turning light off");
+	        } else {
+	            System.out.println("Turning light on");
+	        }
+	    }
+	    
+	    if (arg0.getX() > light4.getX() && arg0.getX() < light4.getX() + light4.getWidth()) {
+	        light4.setImage();
+	        if (light4.getisLightOn()) {
+	            System.out.println("Turning light off");
+	        } else {
+	            System.out.println("Turning light on");
+	        }
+	    }
 	}
 
 
