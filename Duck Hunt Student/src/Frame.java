@@ -19,12 +19,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Background bg = new Background();
 	Window window1 = new Window();
 	Window window2 = new Window();
+	TV tv = new TV();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		window1.paint(g);
 		window2.paint(g); 
 		bg.paint(g);
+		tv.paint(g);
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
@@ -33,6 +35,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		window1.setY(25);
 		window2.setY(40);
 		window1.setImage("bad");
+		
+		tv.setX(bg.getX() + 1747);
 		
 		//----------------- BOUNDARIES ------------------//
 		if (person.getX() < 10) {
@@ -70,18 +74,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 	}
-	
+	 
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	    // TODO Auto-generated method stub
+	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth()) {
+	        tv.setImage();
+	        if (tv.getIsTVOn()) {
+	            System.out.println("Turning off");
+	        } else {
+	            System.out.println("Turning on");
+	        }
+	    }
 	}
+
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
+
 	}
 
 	@Override
@@ -99,7 +111,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

@@ -7,18 +7,18 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Window{
+public class TV{
 	private Image img; 	
 	private AffineTransform tx;
 	private int x, y, vx, width;
-	private int state;
+	private boolean isTVOn;
 
-	public Window() {
-		img = getImage("/imgs/window_good.gif"); //load the image for Tree
+	public TV() {
+		img = getImage("/imgs/tvOff.png"); //load the image for Tree
 		this.x = 0;
-		this.y = 25;
-		//this.width = ?;
-		state = 0;
+		this.y = 268;
+		this.width = 139;
+		isTVOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -46,7 +46,7 @@ public class Window{
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Window.class.getResource(path);
+			URL imageURL = TV.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,24 +54,35 @@ public class Window{
 		return tempImage;
 	}
 	
-	public void setImage(String windowType) {
-		if (windowType.equals("good")) {
-			img = getImage("/imgs/window_good.gif");
-		}
-		if (windowType.equals("mid")) {
-			img = getImage("/imgs/window_mid.gif");
-		}
-		if (windowType.equals("bad")) {
-			img = getImage("/imgs/window_bad.gif");
-		}
+	public void setImage() {
+	    if (isTVOn) {
+	        isTVOn = false;
+	        img = getImage("/imgs/tvOff.png");
+	        tx.setToTranslation(x, y);
+	        tx.scale(0.4, 0.4);
+	    } else {
+	        isTVOn = true;
+	        img = getImage("/imgs/tvOn.png");
+	        tx.setToTranslation(x, y);
+	        tx.scale(0.435, 0.435);
+	    }
 	}
+ 
 	
 	private void update() {
-		x = x + vx;
 		tx.setToTranslation(x, y);
-		tx.scale(0.45, 0.45);
+		if (isTVOn == true) {
+			tx.scale(0.435, 0.435);		
+		}
+		else {
+			tx.scale(0.4, 0.4);		
+		}
+
 	}
 	
+	public boolean getIsTVOn() {
+		return isTVOn;
+	}
 	
 	public int getX() {
 		return this.x;
