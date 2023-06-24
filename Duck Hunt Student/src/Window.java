@@ -7,18 +7,18 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Background{
+public class Window{
 	private Image img; 	
 	private AffineTransform tx;
 	private int x, y, vx, width;
+	private int state;
 
-	public Background() {
-		img = getImage("/imgs/background2.png"); //load the image for Tree
-		this.x = -720;
-		this.y = 0;
-		this.vx = 0;
+	public Window() {
+		img = getImage("/imgs/window_good.gif"); //load the image for Tree
+		this.x = 0;
+		this.y = 25;
 		this.width = 2569;
-		
+		state = 0;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -27,7 +27,7 @@ public class Background{
 	
 	public void changePicture(String newFileName) {
 		img = getImage(newFileName);
-		init(0, 0);
+		init(x, y);
 	}
 	
 	public void paint(Graphics g) {
@@ -40,13 +40,13 @@ public class Background{
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(1.75, 1.75);
+		tx.scale(0.4, 0.4);
 	}
 
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Background.class.getResource(path);
+			URL imageURL = Window.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,25 +54,24 @@ public class Background{
 		return tempImage;
 	}
 	
+	public void setImage(String windowType) {
+		if (windowType.equals("good")) {
+			img = getImage("/imgs/window_good.gif");
+		}
+		if (windowType.equals("mid")) {
+			img = getImage("/imgs/window_mid.gif");
+		}
+		if (windowType.equals("bad")) {
+			img = getImage("/imgs/window_bad.gif");
+		}
+	}
+	
 	private void update() {
 		x = x + vx;
 		tx.setToTranslation(x, y);
-		tx.scale(1.75, 1.75);
+		tx.scale(0.45, 0.45);
 	}
 	
-	public void slide(boolean moveLeft, boolean moveRight) {
-		if (moveLeft == true) {
-			vx = 2;
-			this.x += vx;
-		}
-		else if (moveRight == true) {
-			vx = -2;
-			this.x += vx;
-		}
-		else {
-			vx = 0;
-		}
-	}
 	
 	public int getX() {
 		return this.x;
@@ -80,6 +79,10 @@ public class Background{
 	
 	public void setX(int newX) {
 		this.x = newX;
+	}
+	
+	public void setY(int newY) {
+		this.y = newY;
 	}
 	
 	public int getWidth() {

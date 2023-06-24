@@ -17,12 +17,24 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Person person = new Person();
 	Background bg = new Background();
+	Window window1 = new Window();
+	Window window2 = new Window();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		window1.paint(g);
+		window2.paint(g); 
 		bg.paint(g);
 		person.paint(g);
 		
+		//----------------- POSITIONS -------------------//
+		window1.setX(bg.getX() + 1252);
+		window2.setX(bg.getX() + 1720);
+		window1.setY(25);
+		window2.setY(40);
+		window1.setImage("bad");
+		
+		//----------------- BOUNDARIES ------------------//
 		if (person.getX() < 10) {
 			person.setX(10);
 		}
