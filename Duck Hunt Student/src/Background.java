@@ -13,7 +13,7 @@ public class Background{
 	private int x, y, vx, width;
 
 	public Background() {
-		img = getImage("/imgs/background2.png"); //load the image for Tree
+		img = getImage("/imgs/background_final.png"); //load the image for Tree
 		this.x = -720;
 		this.y = 0;
 		this.vx = 0;

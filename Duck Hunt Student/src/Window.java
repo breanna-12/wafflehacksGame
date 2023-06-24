@@ -40,7 +40,7 @@ public class Window{
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(0.4, 0.4);
+		tx.scale(0.5, 0.5);
 	}
 
 	private Image getImage(String path) {
@@ -69,7 +69,7 @@ public class Window{
 	private void update() {
 		x = x + vx;
 		tx.setToTranslation(x, y);
-		tx.scale(0.45, 0.45);
+		tx.scale(0.5, 0.5);
 	}
 	
 	

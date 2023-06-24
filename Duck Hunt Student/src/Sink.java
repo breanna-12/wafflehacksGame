@@ -16,9 +16,9 @@ public class Sink{
 	public Sink() {
 		img = getImage("/imgs/sink_off.png"); //load the image for Tree
 		this.x = 0;
-		this.y = 215;
-		this.width = 116;
-		this.height = 116;
+		this.y = 222;
+		this.width = 122;
+		this.height = 122;
 		isSinkOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -41,7 +41,7 @@ public class Sink{
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(2, 2);
+		tx.scale(2.1, 2.1);
 	}
 
 	private Image getImage(String path) {
@@ -68,7 +68,7 @@ public class Sink{
 	
 	private void update() {
 		tx.setToTranslation(x, y);	
-		tx.scale(2, 2);		
+		tx.scale(2.1, 2.1);		
 	}
 	
 	public boolean getIsSinkOn() {

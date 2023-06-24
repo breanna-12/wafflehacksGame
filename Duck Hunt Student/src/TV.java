@@ -16,7 +16,7 @@ public class TV{
 	public TV() {
 		img = getImage("/imgs/tvOff.png"); //load the image for Tree
 		this.x = 0;
-		this.y = 268;
+		this.y = 282;
 		this.width = 139;
 		this.height = 175;
 		isTVOn = false;

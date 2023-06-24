@@ -40,15 +40,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
-		window1.setX(bg.getX() + 1252);
-		window2.setX(bg.getX() + 1720);
-		window1.setY(25);
+		window1.setX(bg.getX() + 1277);
+		window2.setX(bg.getX() + 1680);
+		window1.setY(26);
 		window2.setY(40);
 		window1.setImage("bad");
 		
-		tv.setX(bg.getX() + 1747);
+		tv.setX(bg.getX() + 1640);
 		
-		sink.setX(bg.getX() + 2105);
+		sink.setX(bg.getX() + 2085);
 		
 		light1.setX(bg.getX() + 350);
 		light2.setX(bg.getX() + 1300);

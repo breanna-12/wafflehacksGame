@@ -18,7 +18,7 @@ public class Light{
 		this.x = 0;
 		this.y = 0;
 		this.width = 94;
-		this.height = 100;
+		this.height = 105;
 		isLightOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
