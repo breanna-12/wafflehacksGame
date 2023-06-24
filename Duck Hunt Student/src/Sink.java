@@ -23,7 +23,7 @@ public class Sink{
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
 									//use your variables
-	}
+	} 
 	
 	public void changePicture(String newFileName) {
 		img = getImage(newFileName);
