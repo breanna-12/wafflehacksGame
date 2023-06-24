@@ -10,7 +10,7 @@ import java.net.URL;
 public class TV{
 	private Image img; 	
 	private AffineTransform tx;
-	private int x, y, vx, width;
+	private int x, y, vx, width, height;
 	private boolean isTVOn;
 
 	public TV() {
@@ -18,6 +18,7 @@ public class TV{
 		this.x = 0;
 		this.y = 268;
 		this.width = 139;
+		this.height = 175;
 		isTVOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -88,6 +89,10 @@ public class TV{
 		return this.x;
 	}
 	
+	public int getY() {
+		return this.y;
+	}
+	
 	public void setX(int newX) {
 		this.x = newX;
 	}
@@ -98,6 +103,10 @@ public class TV{
 	
 	public int getWidth() {
 		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 
 }

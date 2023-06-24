@@ -10,7 +10,7 @@ import java.net.URL;
 public class Light{
 	private Image img; 	
 	private AffineTransform tx;
-	private int x, y, vx, width;
+	private int x, y, vx, width, height;
 	private boolean isLightOn;
 
 	public Light() {
@@ -18,6 +18,7 @@ public class Light{
 		this.x = 0;
 		this.y = 0;
 		this.width = 94;
+		this.height = 100;
 		isLightOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -78,6 +79,10 @@ public class Light{
 		return this.x;
 	}
 	
+	public int getY() {
+		return this.y;
+	}
+	
 	public void setX(int newX) {
 		this.x = newX;
 	}
@@ -88,6 +93,10 @@ public class Light{
 	
 	public int getWidth() {
 		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 
 }

@@ -10,14 +10,15 @@ import java.net.URL;
 public class Sink{
 	private Image img; 	
 	private AffineTransform tx;
-	private int x, y, vx, width;
+	private int x, y, vx, width, height;
 	private boolean isSinkOn;
 
 	public Sink() {
 		img = getImage("/imgs/sink_off.png"); //load the image for Tree
 		this.x = 0;
 		this.y = 215;
-		this.width = 139;
+		this.width = 116;
+		this.height = 116;
 		isSinkOn = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -78,6 +79,10 @@ public class Sink{
 		return this.x;
 	}
 	
+	public int getY() {
+		return this.y;
+	}
+	
 	public void setX(int newX) {
 		this.x = newX;
 	}
@@ -88,6 +93,10 @@ public class Sink{
 	
 	public int getWidth() {
 		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 
 }

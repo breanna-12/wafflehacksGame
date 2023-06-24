@@ -98,7 +98,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    // TODO Auto-generated method stub
 		
 		// ----------- TV On/Off Collision -------------
-	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth()) {
+	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth() && arg0.getY() > tv.getY() && arg0.getY() < tv.getY() + tv.getHeight()) {
 	        tv.setImage();
 	        if (tv.getIsTVOn()) {
 	            System.out.println("Turning tv off");
@@ -108,7 +108,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    }
 	    
 		// ----------- Sink On/Off Collision -------------
-	    if (arg0.getX() > sink.getX() && arg0.getX() < sink.getX() + sink.getWidth()) {
+	    if (arg0.getX() > sink.getX() && arg0.getX() < sink.getX() + sink.getWidth() && arg0.getY() > sink.getY() && arg0.getY() < sink.getY() + sink.getHeight()) {
 	        sink.setImage();
 	        if (sink.getIsSinkOn()) {
 	            System.out.println("Turning sink off");
@@ -118,7 +118,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    }
 	    
 	 // ----------- Light On/Off Collision -------------
-	    if (arg0.getX() > light1.getX() && arg0.getX() < light1.getX() + light1.getWidth()) {
+	    if (arg0.getX() > light1.getX() && arg0.getX() < light1.getX() + light1.getWidth() && arg0.getY() > light1.getY() && arg0.getY() < light1.getY() + light1.getHeight()) {
 	        light1.setImage();
 	        if (light1.getisLightOn()) {
 	            System.out.println("Turning light off");
@@ -127,7 +127,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        }
 	    }
 	    
-	    if (arg0.getX() > light2.getX() && arg0.getX() < light2.getX() + light2.getWidth()) {
+	    if (arg0.getX() > light2.getX() && arg0.getX() < light2.getX() + light2.getWidth() && arg0.getY() > light2.getY() && arg0.getY() < light2.getY() + light2.getHeight()) {
 	        light2.setImage();
 	        if (light2.getisLightOn()) {
 	            System.out.println("Turning light off");
@@ -136,7 +136,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        }
 	    }
 	    
-	    if (arg0.getX() > light3.getX() && arg0.getX() < light3.getX() + light3.getWidth()) {
+	    if (arg0.getX() > light3.getX() && arg0.getX() < light3.getX() + light3.getWidth() && arg0.getY() > light3.getY() && arg0.getY() < light3.getY() + light3.getHeight()) {
 	        light3.setImage();
 	        if (light3.getisLightOn()) {
 	            System.out.println("Turning light off");
@@ -145,7 +145,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        }
 	    }
 	    
-	    if (arg0.getX() > light4.getX() && arg0.getX() < light4.getX() + light4.getWidth()) {
+	    if (arg0.getX() > light4.getX() && arg0.getX() < light4.getX() + light4.getWidth() && arg0.getY() > light4.getY() && arg0.getY() < light4.getY() + light4.getHeight()) {
 	        light4.setImage();
 	        if (light4.getisLightOn()) {
 	            System.out.println("Turning light off");
