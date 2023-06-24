@@ -96,7 +96,7 @@ public class Person{
 	}
 	
 	public int getWidth() {
-		return this.width;
+		return this.width; 
 	}
 	
 	

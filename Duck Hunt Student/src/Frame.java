@@ -20,6 +20,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Window window1 = new Window();
 	Window window2 = new Window();
 	TV tv = new TV();
+	Sink sink = new Sink();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -27,6 +28,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		window2.paint(g); 
 		bg.paint(g);
 		tv.paint(g);
+		sink.paint(g);
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
@@ -37,6 +39,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		window1.setImage("bad");
 		
 		tv.setX(bg.getX() + 1747);
+		
+		sink.setX(bg.getX() + 2105);
 		
 		//----------------- BOUNDARIES ------------------//
 		if (person.getX() < 10) {
@@ -79,14 +83,27 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 	    // TODO Auto-generated method stub
+		
+		// ----------- TV On/Off Collision -------------
 	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth()) {
 	        tv.setImage();
 	        if (tv.getIsTVOn()) {
-	            System.out.println("Turning off");
+	            System.out.println("Turning tv off");
 	        } else {
-	            System.out.println("Turning on");
+	            System.out.println("Turning tv on");
 	        }
 	    }
+	    
+		// ----------- Sink On/Off Collision -------------
+	    if (arg0.getX() > sink.getX() && arg0.getX() < sink.getX() + sink.getWidth()) {
+	        sink.setImage();
+	        if (sink.getIsSinkOn()) {
+	            System.out.println("Turning sink off");
+	        } else {
+	            System.out.println("Turning sink on");
+	        }
+	    }
+	    
 	}
 
 
