@@ -16,10 +16,28 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Person person = new Person();
+	Background bg = new Background();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		bg.paint(g);
 		person.paint(g);
+		
+		if (person.getX() < 10) {
+			person.setX(10);
+		}
+		if (person.getX() + person.getWidth() > 990) {
+			person.setX(990 - person.getWidth());
+		}
+		
+		if (bg.getX() > -5){
+			bg.setX(-5);
+		}
+		
+		if (bg.getX() + bg.getWidth() < 990){
+			bg.setX(990-bg.getWidth());
+		}
+		
 	}
 	
 	public static void main(String[] arg) {
@@ -27,11 +45,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	public Frame() {
-		JFrame f = new JFrame("Duck Hunt");
+		JFrame f = new JFrame("Can Your Waffle");
 		f.setSize(new Dimension(1000, 600));
 		f.setBackground(Color.blue);
 		f.add(this);
-		f.setResizable(false);
+		f.setResizable(true);
 		f.setLayout(new GridLayout(1,2));
 		f.addMouseListener(this);
 		f.addKeyListener(this);
@@ -85,10 +103,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (arg0.getKeyCode() == 39) {
 			person.setImage(false, true);
 			person.rightPressed(true);
+			bg.slide(false, true);
 		}
 		if (arg0.getKeyCode() == 37) {
 			person.setImage(true, false);
 			person.leftPressed(true);
+			bg.slide(true, false);
 		}
 	}
 
@@ -98,10 +118,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (arg0.getKeyCode() == 39) {
 			person.setImage(false, false);
 			person.rightPressed(false);
+			bg.slide(false, false);
 		}
 		if (arg0.getKeyCode() == 37) {
 			person.setImage(false, false);
 			person.leftPressed(false);
+			bg.slide(false, false);
 		}
 		
 	}

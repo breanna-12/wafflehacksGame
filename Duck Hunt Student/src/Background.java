@@ -7,18 +7,18 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Person{
+public class Background{
 	private Image img; 	
 	private AffineTransform tx;
-	private int x, y, height, width, vx;
+	private int x, y, vx, width;
 
-	public Person() {
-		img = getImage("/imgs/character_front.png"); //load the image for Tree
-		this.x = 100;
-		this.y = 200;
-		this.width = 185;
-		this.height = 550;
+	public Background() {
+		img = getImage("/imgs/background.png"); //load the image for Tree
+		this.x = -720;
+		this.y = 0;
 		this.vx = 0;
+		this.width = 2569;
+		
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -36,18 +36,17 @@ public class Person{
 		g2.drawImage(img, tx, null);
 		update();
 
-
 	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(.5, .5);
+		tx.scale(1.75, 1.75);
 	}
 
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Person.class.getResource(path);
+			URL imageURL = Background.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,53 +54,36 @@ public class Person{
 		return tempImage;
 	}
 	
-	public void setImage(boolean walkingLeft, boolean walkingRight) {
-		if (walkingRight && !walkingLeft) {
-			img = getImage("/imgs/character_walkRight.gif");
-		}
-		if (walkingLeft && !walkingRight) {
-			img = getImage("/imgs/character_walkLeft.gif");
-		}
-		if (!walkingLeft && !walkingRight) {
-			img = getImage("/imgs/character_front.png");
-		}
-	}
-	
-	public void rightPressed(boolean rightPressed) {
-		if (rightPressed == true) {
-			vx = 4;
-			rightPressed = false;
-		} else {
-			vx = 0;
-		}
-	}
-	
-	public void leftPressed(boolean leftPressed) {
-		if (leftPressed == true) {
-			vx = -4;
-			leftPressed = false;
-		} else {
-			vx = 0;
-		}
-	}
-	
 	private void update() {
-		x = x+vx;
+		x = x + vx;
 		tx.setToTranslation(x, y);
-		tx.scale(.6, .6);
+		tx.scale(1.75, 1.75);
+	}
+	
+	public void slide(boolean moveLeft, boolean moveRight) {
+		if (moveLeft == true) {
+			vx = 2;
+			this.x += vx;
+		}
+		else if (moveRight == true) {
+			vx = -2;
+			this.x += vx;
+		}
+		else {
+			vx = 0;
+		}
 	}
 	
 	public int getX() {
 		return this.x;
 	}
 	
-	public int getWidth() {
-		return this.width;
-	}
-	
-	
 	public void setX(int newX) {
 		this.x = newX;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 
 }
