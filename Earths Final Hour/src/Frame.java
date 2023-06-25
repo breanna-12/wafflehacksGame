@@ -37,6 +37,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Bathtub bathtub = new Bathtub();
 	Shower shower = new Shower();
 	
+	Music spongebobMusic = new Music("Spongebob.wav", true);
+	
 	// ---------- FOOD ------------ //
 	Food meat = new Food(150, 85, 0.2,0.2,"meat");
 	Food milk = new Food(160,185, 0.10,0.10,"milk");
@@ -263,11 +265,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth() && arg0.getY() > tv.getY() && arg0.getY() < tv.getY() + tv.getHeight()) {
 	        tv.setImage();
 	        if (tv.getIsTVOn()) {
-	            System.out.println("Turning tv off");
-	        } else {
-	            System.out.println("Turning tv on");
+	            System.out.println("TV is now on");
 	            score += 3;
 	            co2+=3.2;
+	            spongebobMusic.start();
+	        } else {
+	            System.out.println("TV is now off");
+	            spongebobMusic.stop();
 	        }
 	    }
 	    
