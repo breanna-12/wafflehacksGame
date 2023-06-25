@@ -34,6 +34,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Clothes clothes = new Clothes();
 	Car car = new Car();
 	Bathtub bathtub = new Bathtub();
+	Shower shower = new Shower();
 	
 	// ---------- FOOD ------------ //
 	Food meat = new Food(150, 85, 0.2,0.2,"meat");
@@ -82,6 +83,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		clothes.paint(g);
 		car.paint(g);
 		bathtub.paint(g);
+		shower.paint(g);
 		
 		// --------- FOOD --------- //
 		meat.paint(g);
@@ -107,14 +109,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		window2.setX(bg.getX() + 1680);
 		window1.setY(26);
 		window2.setY(40);
-		window1.setImage("bad");
 		
 		tv.setX(bg.getX() + 1640);
 		
 		sink.setX(bg.getX() + 2085);
 		
 		light1.setX(bg.getX() + 350);
-		light2.setX(bg.getX() + 1300);
+		light2.setX(bg.getX() + 1315);
 		light3.setX(bg.getX() + 1550);
 		light4.setX(bg.getX() + 2300);
 		
@@ -122,6 +123,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		clothes.setX(bg.getX() + 1830);
 		
 		bathtub.setX(bg.getX() + 2220);
+		
+		shower.setX(bg.getX() + 2435);
 		
 		if(!car.getIsPersonInCar()) {
 			car.setX(bg.getX() + 50);
@@ -170,6 +173,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (bg.getX() + bg.getWidth() < 990){
 			bg.setX(990-bg.getWidth());
 		}
+		
+		// ------- WINDOWS -------- //
+		if (score > 0 && score < 40) {
+			window1.setImage("good");
+			window2.setImage("good");
+		}
+		else if (score > 41 && score < 90) {
+			window1.setImage("mid");
+			window2.setImage("mid");
+		}
+		else if (score > 91) {
+			window1.setImage("bad");
+			window2.setImage("bad");
+		}
+		System.out.println(score);
 	}
 	
 	public static void main(String[] arg) {
@@ -203,6 +221,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning tv off");
 	        } else {
 	            System.out.println("Turning tv on");
+	            score += 4;
 	        }
 	    }
 	    
@@ -213,6 +232,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning sink off");
 	        } else {
 	            System.out.println("Turning sink on");
+	            score += 2;
+	        }
+	    }
+	    
+	 // ----------- Shower On/Off Collision -------------
+	    if (arg0.getX() > shower.getX() && arg0.getX() < shower.getX() + shower.getWidth() && arg0.getY() > shower.getY() && arg0.getY() < shower.getY() + shower.getHeight()) {
+	        shower.setImage();
+	        if (shower.getisShowerOn()) {
+	            System.out.println("Turning shower off");
+	        } else {
+	            System.out.println("Turning shower on");
+	            score += 4;
 	        }
 	    }
 	    
@@ -223,6 +254,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning light off");
 	        } else {
 	            System.out.println("Turning light on");
+	            score += 2;
 	        }
 	    }
 	    
@@ -232,6 +264,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning light off");
 	        } else {
 	            System.out.println("Turning light on");
+	            score += 2;
 	        }
 	    }
 	    
@@ -241,6 +274,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning light off");
 	        } else {
 	            System.out.println("Turning light on");
+	            score += 2;
 	        }
 	    }
 	    
@@ -250,6 +284,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning light off");
 	        } else {
 	            System.out.println("Turning light on");
+	            score += 2;
 	        }
 	    }
 	    
@@ -260,20 +295,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    if(arg0.getX() > clothes.getX() && arg0.getX() < clothes.getX() + (clothes.getWidth()/2) && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
 	    	person.setOutfitState(1);
 	    	clothes.setImage();
+            score += 2;
 	    }
 	    
 	    if(arg0.getX() > (clothes.getX() + clothes.getWidth()/2) && arg0.getX() < clothes.getX() + clothes.getWidth() && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
 	    	person.setOutfitState(2);
 	    	clothes.setImage();
+            score += 4;
 	    }
 	    
 	    // --------- Bathtub Collision ----------- //
 	    if (arg0.getX() > bathtub.getX() && arg0.getX() < bathtub.getX() + bathtub.getWidth() && arg0.getY() > bathtub.getY() && arg0.getY() < bathtub.getY() + bathtub.getHeight()) {
 	        bathtub.setImage();
 	        if (bathtub.getIsBathtubOn()) {
-	            System.out.println("Turning light off");
+	            System.out.println("Turning bathtub off");
 	        } else {
-	            System.out.println("Turning light on");
+	            System.out.println("Turning bathtub on");
+	            score += 5;
 	        }
 	    }
 	    
@@ -287,6 +325,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			 else {
 				 System.out.println("person in car");
 				 person.setX(10);
+		         score += 5;
 			 }
 		 }
 
@@ -324,7 +363,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			meat.clicked();
 			if(arg0.getX()>meat.getX()&&arg0.getX()<meat.getX()+meat.width() && arg0.getY()>meat.getY()+meat.height()&&arg0.getY()<meat.getY()+2*meat.height()){
 				System.out.println("meat");
-				if (meatleft>0) {
+				if (meatleft>1) {
 					meat.setY(85);
 					co2+=15.5;
 					water=1;
@@ -356,7 +395,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			milk.clicked();
 			if(arg0.getX()>milk.getX()&&arg0.getX()<milk.getX()+0.5*milk.width() && arg0.getY()>milk.getY()&&arg0.getY()<milk.getY()+0.8*milk.height()) {
 				System.out.println("milk");
-				if (milkleft>0) {
+				if (milkleft>1) {
 					milk.setY(185);
 					co2+=0.8;
 					score+=4;
@@ -388,7 +427,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			rice.clicked();
 			if(arg0.getX()>rice.getX()&&arg0.getX()<rice.getX()+rice.width() && arg0.getY()>rice.getY()+10&&arg0.getY()<rice.getY()+1.5*rice.height()) {
 				System.out.println("rice");
-				if (riceleft>0) {
+				if (riceleft>1) {
 					rice.setY(330);
 					co2+=0.16;
 					score+=2;
@@ -418,7 +457,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			lettuce.clicked();
 			if(arg0.getX()>lettuce.getX()+10&&arg0.getX()<lettuce.getX()+2.5*lettuce.width() && arg0.getY()>lettuce.getY()+lettuce.width()&&arg0.getY()<lettuce.getY()+2*lettuce.height()) {
 				System.out.println("lettuce");
-				if (lettuceleft>0) {
+				if (lettuceleft>1) {
 					lettuce.setY(220);
 					co2+=3;
 					score+=2;
@@ -446,14 +485,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			//EGGS CLICKED
 			eggs.clicked();
-			if(arg0.getX()>eggs.getX()&&arg0.getX()<eggs.getX()+1.5*eggs.width() && arg0.getY()>eggs.getY()+0.3*eggs.height()&&arg0.getY()<eggs.getY()+eggs.height()) {
+			if(arg0.getX()>eggs.getX()&&arg0.getX()<eggs.getX()+1.5*eggs.width() && arg0.getY()>eggs.getY()+0.3*eggs.height()&&arg0.getY()<eggs.getY()+1.5*eggs.height()) {
 				System.out.println("eggs");
-				if (eggsleft>0) {
+				if (eggsleft>1) {
 					eggs.setY(195);
 					co2+=3.18;
 					score+=2;
 					trashleft+=1;
 					eggsleft-=1;
+
 					status= eggsleft+" eggs left";
 				}
 				else{
@@ -480,7 +520,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			if(arg0.getX()>chocolate.getX()+chocolate.width()&&arg0.getX()<chocolate.getX()+2*chocolate.width() && arg0.getY()>chocolate.getY()+0.3*chocolate.height()&&arg0.getY()<chocolate.getY()+2*chocolate.height()) {
 				System.out.println("choco");
-				if (chocolateleft>0) {
+				if (chocolateleft>1) {
 					chocolate.setY(230);
 					co2+=0.95;
 					water+=0.4;
@@ -510,7 +550,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			apples.clicked();
 			if(arg0.getX()>apples.getX()&&arg0.getX()<apples.getX()+2.5*apples.width() && arg0.getY()>apples.getY()+0.9*apples.height()&&arg0.getY()<apples.getY()+1.5*apples.height()) {
 				System.out.println("apples");
-				if (applesleft>0) {
+				if (applesleft>1) {
 					apples.setY(275);
 					co2+=0.06;
 					score+=1;
@@ -541,7 +581,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			cereal.clicked();
 			if(arg0.getX()>cereal.getX()-5&&arg0.getX()<cereal.getX()+2*cereal.width() && arg0.getY()>cereal.getY()+cereal.height()&&arg0.getY()<cereal.getY()+3*cereal.height()) {
 				System.out.println("cereal");
-				if (cerealleft>0) {
+				if (cerealleft>1) {
 					cereal.setY(125);
 					co2+=2.64;
 					score+=2;
@@ -572,7 +612,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			beans.clicked();
 			if(arg0.getX()>beans.getX()&&arg0.getX()<beans.getX()+beans.width() && arg0.getY()>beans.getY()+0.5*beans.height()&&arg0.getY()<beans.getY()+1.7*beans.height()) {
 				System.out.println("beans");
-				if (beansleft>0) {
+				if (beansleft>1) {
 					beans.setY(135);
 					co2+=0.8;
 					score+=1;
@@ -604,7 +644,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			almonds.clicked();
 			if(arg0.getX()>almonds.getX()&&arg0.getX()<almonds.getX()+almonds.width() && arg0.getY()>almonds.getY()&&arg0.getY()<almonds.getY()+2*almonds.height()) {
 				System.out.println("almonds");
-				if (almondsleft>0) {
+				if (almondsleft>1) {
 					almonds.setY(60);
 					co2+=1.2;
 					water+=0.5;
