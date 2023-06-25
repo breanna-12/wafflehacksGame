@@ -77,7 +77,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		int min = 2;
 		int range = max - min + 1;
 		int m = (int)(Math.random() * range) + min;
-		int num = (int)(Math.random() * 8);
+		int num = (int)(Math.random() * 8); 
 
 	
 	public void paint(Graphics g) {
