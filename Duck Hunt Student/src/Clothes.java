@@ -17,8 +17,8 @@ public class Clothes{
 		img = getImage("/imgs/clothes_together.png"); //load the image for Tree
 		this.x = 0;
 		this.y = -300;
-		this.width = 122;
-		this.height = 122;
+		this.width = 225;
+		this.height = 94;
 		isShowing = false;
 
 		tx = AffineTransform.getTranslateInstance(x, y);

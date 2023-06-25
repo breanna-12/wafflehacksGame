@@ -164,6 +164,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    if (arg0.getX() > dresser.getX() && arg0.getX() < dresser.getX() + dresser.getWidth() && arg0.getY() > dresser.getY() && arg0.getY() < dresser.getY() + dresser.getHeight()) {
 	        clothes.setImage();
 	    }
+	    
+	    if(arg0.getX() > clothes.getX() && arg0.getX() < clothes.getX() + (clothes.getWidth()/2) && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
+	    	person.setOutfitState(1);
+	    	clothes.setImage();
+	    }
+	    
+	    if(arg0.getX() > (clothes.getX() + clothes.getWidth()/2) && arg0.getX() < clothes.getX() + clothes.getWidth() && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
+	    	person.setOutfitState(2);
+	    	clothes.setImage();
+	    }
 	}
 
 

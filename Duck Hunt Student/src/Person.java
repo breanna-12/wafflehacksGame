@@ -11,6 +11,7 @@ public class Person{
 	private Image img; 	
 	private AffineTransform tx;
 	private int x, y, height, width, vx;
+	private int outfitState;
 
 	public Person() {
 		img = getImage("/imgs/character_front.png"); //load the image for Tree
@@ -19,6 +20,7 @@ public class Person{
 		this.width = 185;
 		this.height = 550;
 		this.vx = 0;
+		this.outfitState = 1;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -56,14 +58,24 @@ public class Person{
 	}
 	
 	public void setImage(boolean walkingLeft, boolean walkingRight) {
-		if (walkingRight && !walkingLeft) {
+		if (walkingRight && !walkingLeft && outfitState == 1) {
 			img = getImage("/imgs/character_walkRight.gif");
 		}
-		if (walkingLeft && !walkingRight) {
+		if (walkingLeft && !walkingRight && outfitState == 1) {
 			img = getImage("/imgs/character_walkLeft.gif");
 		}
-		if (!walkingLeft && !walkingRight) {
+		if (!walkingLeft && !walkingRight && outfitState == 1) {
 			img = getImage("/imgs/character_front.png");
+		}
+		
+		if (walkingRight && !walkingLeft && outfitState == 2) {
+			img = getImage("/imgs/walk_right_leather.gif");
+		}
+		if (walkingLeft && !walkingRight && outfitState == 2) {
+			img = getImage("/imgs/walk_left_leather.gif");
+		}
+		if (!walkingLeft && !walkingRight && outfitState == 2) {
+			img = getImage("/imgs/character_leather.png");
 		}
 	}
 	
@@ -99,6 +111,13 @@ public class Person{
 		return this.width; 
 	}
 	
+	public int getOutfitState() {
+		return outfitState;
+	}
+	
+	public void setOutfitState(int newOutfit) {
+		outfitState = newOutfit;
+	}
 	
 	public void setX(int newX) {
 		this.x = newX;
