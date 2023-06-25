@@ -21,6 +21,7 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Person person = new Person();
+	Intro intro = new Intro();
 	Background bg = new Background();
 	Window window1 = new Window();
 	Window window2 = new Window();
@@ -108,6 +109,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		almonds.paint(g);
 		
 		person.paint(g);
+		
+		intro.paint(g);
 		
 		g.setFont(f1);			
 		g.drawString(status,400,250);
@@ -228,7 +231,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	public Frame() {
-		JFrame f = new JFrame("Can Your Waffle");
+		JFrame f = new JFrame("Earth's Final Hour");
 		f.setSize(new Dimension(1000, 600));
 		f.setBackground(Color.blue);
 		f.add(this);
@@ -246,6 +249,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 	    // TODO Auto-generated method stub
+		
+		// ----------- INTRO CLICK -------------
+		if (intro.getX() == 0 && intro.getY() == 0) {
+			if (arg0.getX() > 333 && arg0.getX() < 666 && arg0.getY() > 150 && arg0.getY() < 450) {
+				intro.setScaleX(0.2);
+				intro.setScaleY(0.2);
+				intro.setY(-400);
+			}
+		}
 		
 		// ----------- TV On/Off Collision -------------
 	    if (arg0.getX() > tv.getX() && arg0.getX() < tv.getX() + tv.getWidth() && arg0.getY() > tv.getY() && arg0.getY() < tv.getY() + tv.getHeight()) {
