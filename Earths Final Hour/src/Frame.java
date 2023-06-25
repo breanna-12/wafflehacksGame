@@ -68,6 +68,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int beansleft=3;
 	int almondsleft=3;
 	
+	 String carText = " ";
+		String storeText = " ";
+		int max = 15;
+		int min = 2;
+		int range = max - min + 1;
+		int m = (int)(Math.random() * range) + min;
+		int num = (int)(Math.random() * 8);
+
+	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		window1.paint(g);
@@ -104,6 +113,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawString(status,400,250);
 		timer.start();
 
+		//car stuff
+		g.drawString(carText, 200, 140);
+		g.drawString(storeText, 200, 140);
+
+		
 		//----------------- POSITIONS -------------------//
 		window1.setX(bg.getX() + 1277);
 		window2.setX(bg.getX() + 1680);
@@ -172,6 +186,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				
 		if (bg.getX() + bg.getWidth() < 990){
 			bg.setX(990-bg.getWidth());
+		}
+		
+		//car
+		if (person.getX() + person.getWidth() < bg.getX()+900){
+			storeText = "click car to drive to store";
+			if(car.getIsPersonInCar()) {
+				storeText = " ";
+			}
+		}
+		else {
+			storeText = " ";
+			}
+				
+				
+		if (car.getX() + car.getWidth() < bg.getX()-300){
+			carText = "you traveled " + m + " miles";
+		}
+		else {
+			carText = " ";
 		}
 		
 		// ------- WINDOWS -------- //
