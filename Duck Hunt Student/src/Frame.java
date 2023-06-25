@@ -27,6 +27,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Light light4 = new Light();
 	Dresser dresser = new Dresser();
 	Clothes clothes = new Clothes();
+	Car car = new Car();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -41,6 +42,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		light4.paint(g);
 		dresser.paint(g);
 		clothes.paint(g);
+		car.paint(g);
 		person.paint(g);
 		
 		//----------------- POSITIONS -------------------//
@@ -62,22 +64,40 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		dresser.setX(bg.getX() + 1876);
 		clothes.setX(bg.getX() + 1830);
 		
+		if(!car.getIsPersonInCar()) {
+			car.setX(bg.getX() + 50);
+		}
+
+		
 		//----------------- BOUNDARIES ------------------//
-		if (person.getX() < 10) {
+		
+		//person
+		if(!car.getIsPersonInCar()) {
+		if (person.getX() < 10 && person.getX() > -100) {
 			person.setX(10);
 		}
 		if (person.getX() + person.getWidth() > 990) {
 			person.setX(990 - person.getWidth());
 		}
-		
+		}
+				
+		//car
+		if (car.getX() > bg.getX()+ 10){
+			car.setX(bg.getX()+ 10);
+		}
+				
+		if (car.getX() + car.getWidth() < bg.getX()-1000){
+			car.setX(bg.getX()-15);
+		}
+				
+		//bg
 		if (bg.getX() > -5){
 			bg.setX(-5);
 		}
-		
+				
 		if (bg.getX() + bg.getWidth() < 990){
 			bg.setX(990-bg.getWidth());
 		}
-		
 	}
 	
 	public static void main(String[] arg) {
@@ -174,6 +194,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    	person.setOutfitState(2);
 	    	clothes.setImage();
 	    }
+	    
+	 // ----------- Car Person In/Out Collision -------------
+		 if (arg0.getX() > car.getX() && arg0.getX() < car.getX() + car.getWidth()) {
+			 car.setImage();
+			 if (car.getIsPersonInCar()) {
+				 System.out.println("person out of car");
+				 person.setX(-100000000);
+			 } 
+			 else {
+				 System.out.println("person in car");
+				 person.setX(10);
+			 }
+		 }
+
+
 	}
 
 
@@ -221,6 +256,20 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			person.leftPressed(true);
 			bg.slide(true, false);
 		}
+		
+		//for car
+		if (arg0.getKeyCode() == 39 && car.getIsPersonInCar()) {
+			car.rightPressed(true);
+			bg.slide(false, true);
+			car.update();
+		}
+		if (arg0.getKeyCode() == 37 && car.getIsPersonInCar()) {
+			car.leftPressed(true);
+			bg.slide(true, false);
+			car.update();
+		}
+
+
 	}
 
 	@Override
@@ -236,6 +285,20 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			person.leftPressed(false);
 			bg.slide(false, false);
 		}
+		
+		//for car
+		if (arg0.getKeyCode() == 39 && car.getIsPersonInCar()) {
+			car.rightPressed(false);
+			bg.slide(false, false);
+			car.update();
+		}
+		if (arg0.getKeyCode() == 37 && car.getIsPersonInCar()) {
+			car.leftPressed(false);
+			bg.slide(false, false);
+			car.update();
+		}
+
+
 		
 	}
 
