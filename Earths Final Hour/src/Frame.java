@@ -221,7 +221,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	            System.out.println("Turning tv off");
 	        } else {
 	            System.out.println("Turning tv on");
-	            score += 4;
+	            score += 3;
+	            co2+=3.2;
 	        }
 	    }
 	    
@@ -233,6 +234,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning sink on");
 	            score += 2;
+	            water+=20;
 	        }
 	    }
 	    
@@ -244,6 +246,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning shower on");
 	            score += 4;
+	            water+=16;
 	        }
 	    }
 	    
@@ -255,6 +258,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning light on");
 	            score += 2;
+	            co2+=1.39;
 	        }
 	    }
 	    
@@ -265,6 +269,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning light on");
 	            score += 2;
+	            co2+=1.39;
 	        }
 	    }
 	    
@@ -275,6 +280,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning light on");
 	            score += 2;
+	            co2+=1.39;
 	        }
 	    }
 	    
@@ -285,6 +291,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning light on");
 	            score += 2;
+	            co2+=1.39;
 	        }
 	    }
 	    
@@ -296,12 +303,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    	person.setOutfitState(1);
 	    	clothes.setImage();
             score += 2;
+            co2+=15;
+            water +=700;
+            
 	    }
 	    
 	    if(arg0.getX() > (clothes.getX() + clothes.getWidth()/2) && arg0.getX() < clothes.getX() + clothes.getWidth() && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
 	    	person.setOutfitState(2);
 	    	clothes.setImage();
             score += 4;
+            co2+=25;
+            water+=8000;
 	    }
 	    
 	    // --------- Bathtub Collision ----------- //
@@ -312,6 +324,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	        } else {
 	            System.out.println("Turning bathtub on");
 	            score += 5;
+	            water +=40;
 	        }
 	    }
 	    
@@ -326,6 +339,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				 System.out.println("person in car");
 				 person.setX(10);
 		         score += 5;
+		         co2+=5;
 			 }
 		 }
 
