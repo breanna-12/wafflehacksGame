@@ -78,8 +78,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		int range = max - min + 1;
 		int m = (int)(Math.random() * range) + min;
 		int num = (int)(Math.random() * 8); 
+		
+		String lightText = "turn on the lights!";
+		String foodText = " ";
+		String bathOrShowerText = " ";
+		String sinkText = " ";
+		String tvText = " ";
+		String clothesText = " ";
 
-	
+
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		window1.paint(g);
@@ -121,6 +128,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//car stuff
 		g.drawString(carText, 200, 140);
 		g.drawString(storeText, 200, 140);
+		
+		//other text
+		if(intro.getY() == -400) {
+			g.drawString(lightText, 250, 35);
+		}
+		g.drawString(foodText, 100, 200);
+		g.drawString(bathOrShowerText, 200, 500);
+		g.drawString(sinkText, 500, 250);
+		g.drawString(tvText, 100, 250);
+		g.drawString(clothesText, 100, 250);
+
 
 		
 		//----------------- POSITIONS -------------------//
@@ -193,24 +211,65 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			bg.setX(990-bg.getWidth());
 		}
 		
-		//car
-		if (person.getX() + person.getWidth() < bg.getX()+900){
-			storeText = "click car to drive to store";
-			if(car.getIsPersonInCar()) {
-				storeText = " ";
-			}
-		}
-		else {
-			storeText = " ";
-			}
+		//----------------- If __ -> show TEXT ------------------//
+				if(intro.getY() == -400) {
+				
+				if (person.getX() + person.getWidth() < bg.getX()+900){
+					storeText = "click car to drive to store";
+					if(car.getIsPersonInCar()) {
+						storeText = " ";
+					}
+				}
+				else {
+					storeText = " ";
+					}
+						
+						
+				if (car.getX() + car.getWidth() < bg.getX()-300){
+					carText = "you traveled " + m + " miles to go to store";
+				}
+				else {
+					carText = " ";
+				}
 				
 				
-		if (car.getX() + car.getWidth() < bg.getX()-300){
-			carText = "you traveled " + m + " miles";
-		}
-		else {
-			carText = " ";
-		}
+				if (person.getX() > bg.getX()+800 && person.getX() + person.getWidth() < bg.getX() + 1300){
+					foodText = "click food to eat!";
+				}
+				else {
+					foodText = " ";
+				}
+				
+				if (person.getX() > sink.getX() - 100 && person.getX() + person.getWidth() < sink.getX() + sink.getWidth() + 100){
+					sinkText = "click sink to wash hands!";
+				}
+				else {
+					sinkText = " ";
+				}
+				
+				if (person.getX() > shower.getX() - 200 && person.getX() + person.getWidth() < shower.getX() + shower.getWidth() + 100){
+					bathOrShowerText = "click either bath or shower head to freshen up!";
+				}
+				else {
+					bathOrShowerText = " ";
+				}
+				
+				if (person.getX() > tv.getX() - 100 && person.getX() + person.getWidth() < tv.getX() + tv.getWidth() + 100){
+					tvText = "click tv to watch SpongeBob!";
+				}
+				else {
+					tvText = " ";
+				}
+				
+				if (person.getX() > dresser.getX() - 100 && person.getX() + person.getWidth() < dresser.getX() + dresser.getWidth() + 100){
+					clothesText = "click dresser to choose your outfit!";
+				}
+				else {
+					clothesText = " ";
+				}
+					
+				}
+
 		
 		// ------- WINDOWS -------- //
 		if (score > 0 && score < 40) {
