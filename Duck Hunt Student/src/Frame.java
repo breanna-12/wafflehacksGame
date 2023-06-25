@@ -33,6 +33,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Dresser dresser = new Dresser();
 	Clothes clothes = new Clothes();
 	Car car = new Car();
+	Bathtub bathtub = new Bathtub();
 	
 	// ---------- FOOD ------------ //
 	Food meat = new Food(150, 85, 0.2,0.2,"meat");
@@ -80,6 +81,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		dresser.paint(g);
 		clothes.paint(g);
 		car.paint(g);
+		bathtub.paint(g);
 		
 		// --------- FOOD --------- //
 		meat.paint(g);
@@ -118,6 +120,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		dresser.setX(bg.getX() + 1876);
 		clothes.setX(bg.getX() + 1830);
+		
+		bathtub.setX(bg.getX() + 2220);
 		
 		if(!car.getIsPersonInCar()) {
 			car.setX(bg.getX() + 50);
@@ -261,6 +265,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    if(arg0.getX() > (clothes.getX() + clothes.getWidth()/2) && arg0.getX() < clothes.getX() + clothes.getWidth() && arg0.getY() > clothes.getY() && arg0.getY() < clothes.getY() + clothes.getHeight()) {
 	    	person.setOutfitState(2);
 	    	clothes.setImage();
+	    }
+	    
+	    // --------- Bathtub Collision ----------- //
+	    if (arg0.getX() > bathtub.getX() && arg0.getX() < bathtub.getX() + bathtub.getWidth() && arg0.getY() > bathtub.getY() && arg0.getY() < bathtub.getY() + bathtub.getHeight()) {
+	        bathtub.setImage();
+	        if (bathtub.getIsBathtubOn()) {
+	            System.out.println("Turning light off");
+	        } else {
+	            System.out.println("Turning light on");
+	        }
 	    }
 	    
 	 // ----------- Car Person In/Out Collision -------------
