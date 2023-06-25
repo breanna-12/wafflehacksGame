@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
 import java.awt.MouseInfo;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,6 +37,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Car car = new Car();
 	Bathtub bathtub = new Bathtub();
 	Shower shower = new Shower();
+	
+	Ending ending = new Ending();
+	Color textColor = Color.WHITE;
 	
 	Music spongebobMusic = new Music("Spongebob.wav", true);
 	
@@ -71,13 +75,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int beansleft=3;
 	int almondsleft=3;
 	
+	int meatbought=(int)(Math.random() * 2);
+	int milkbought=(int)(Math.random() * 3);
+	int ricebought=(int)(Math.random() * 6);
+	int lettucebought=(int)(Math.random() * 4);
+	int eggsbought=(int)(Math.random() * 5);
+	int chocolatebought=(int)(Math.random() * 6);
+	int applesbought = (int)(Math.random() * 5);
+	int cerealbought=(int)(Math.random() * 4);
+	int beansbought=(int)(Math.random() * 5);
+	int almondsbought=(int)(Math.random() * 5);
+
+	
 	 String carText = " ";
 		String storeText = " ";
 		int max = 15;
 		int min = 2;
 		int range = max - min + 1;
 		int m = (int)(Math.random() * range) + min;
-		int num = (int)(Math.random() * 8); 
+		String foodBought1 = " ";
+		String foodBought2 = " "; 
 		
 		String lightText = "turn on the lights!";
 		String foodText = " ";
@@ -138,6 +155,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawString(sinkText, 500, 250);
 		g.drawString(tvText, 100, 250);
 		g.drawString(clothesText, 100, 250);
+		
+		g.drawString(foodBought1, 50, 250);
+		g.drawString(foodBought2, 50, 350);
+
 
 
 		
@@ -232,6 +253,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 					carText = " ";
 				}
 				
+				if (car.getX() + car.getWidth() < bg.getX()-400){
+					foodBought1 = "you bought "+milkbought+" milk, "+meatbought+" meat, "+ricebought+" rice, "+lettucebought+" lettuce, "+eggsbought+" eggs, ";
+					foodBought2 = +chocolatebought+" chocolate, "+applesbought+" apples, "+cerealbought+" cereal, "+beansbought+" beans, "+almondsbought+" almonds, ";
+				}
+				else {
+					foodBought1 = " ";
+					foodBought2 = " ";
+				}
+				
 				
 				if (person.getX() > bg.getX()+800 && person.getX() + person.getWidth() < bg.getX() + 1300){
 					foodText = "click food to eat!";
@@ -272,7 +302,34 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		
 		// ------- WINDOWS -------- //
-		if (score > 0 && score < 40) {
+				 if(score>110) {
+						ending.setImage("yes");
+						System.out.println("erm");
+						
+						
+						String endingtext ="The world has plunged into disarray due to global warming.";
+						String endingtext2="Because of yours and many others' lack of sustainability,";
+						String endingtext3= "the Earth has become uninhabitable.";
+						String endingtext4 ="Due to your actions, you caused the release of:";
+						String endingtext5 =co2 + " kilograms of CO2, a greenhouse gas which causes ";
+						String endingtext6="heat to be trapped in the atmosphere and warm the Earth.";
+						String endingtext7= "and used up";
+						String endingtext8= water + " gallons of water in just one day.";
+						
+						
+						ending.paint(g);
+						g.setColor(textColor);
+						g.drawString(endingtext,130,100);
+						g.drawString(endingtext2,130,150);
+						g.drawString(endingtext3,130,200);
+						g.drawString(endingtext4,130,250);
+						g.drawString(endingtext5,130,300);
+						g.drawString(endingtext6,130,350);
+						g.drawString(endingtext7,130,400);
+						g.drawString(endingtext8,130,450);
+					}
+				
+		else if (score > 0 && score < 40) {
 			window1.setImage("good");
 			window2.setImage("good");
 		}
